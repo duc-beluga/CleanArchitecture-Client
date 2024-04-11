@@ -9,9 +9,14 @@ function App() {
   useEffect(() => {
     axios
       .get("https://blog-clean-cqrs-redis.azurewebsites.net/api/blog")
-      .then((res) => setBlogs(res.data))
-      .catch((err) => setError(err.message));
-    setLoading(false);
+      .then((res) => {
+        setBlogs(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
   }, []);
 
   if (loading) {
